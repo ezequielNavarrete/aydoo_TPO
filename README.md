@@ -17,4 +17,8 @@ cuando hayan realizado modificaciones y lo quieran subir realizan un "git add ."
 
 como ultimo un git push origin nombreDelaRama y se deberia subir correctamente
 
+y realizan un pull request de la siguiente manera:
+![imagen](https://user-images.githubusercontent.com/56275212/176980408-0d76d511-8d88-413d-b6ed-c267d2dd4a00.png)
+
+
 para traerse cambios de la rama main que es la principal: 'git pull origin main'. 
