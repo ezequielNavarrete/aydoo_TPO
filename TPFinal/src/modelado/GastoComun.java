@@ -1,10 +1,19 @@
 package modelado;
 
+import java.util.Date;
+
 public class GastoComun extends Gasto{
 
-	GastoComun(float monto, String descripcion, String tipoExpensa) {
+	
+	public GastoComun(float monto, String descripcion, String tipoExpensa) {
 		super(monto, descripcion, tipoExpensa);
-		// TODO Auto-generated constructor stub
+	}
+	
+	
+
+	public String aStringComun() {
+		//		return nombre + "( " + legajo + " )";
+		return ("Descripcion: " + this.descripcion + ", tipo expensa: " + this.tipoExpensa + ",monto: " + this.monto );
 	}
 
 }
