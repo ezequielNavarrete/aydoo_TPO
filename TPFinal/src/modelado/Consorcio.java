@@ -87,8 +87,10 @@ public class Consorcio {
 	}
 	
 	public void generarExpensas(UnidadFuncional unidadFuncional) {
-		
+		float valor=this.conocerSaldo();
+		System.out.println(valor);
 	}
+	
 	
 	public void enviarNotificacion(Notificacion notificacion) {
 		

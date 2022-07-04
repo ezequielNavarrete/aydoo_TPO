@@ -20,6 +20,9 @@ public class Criterio {
 		return 0;
 	}
 	
+	public EstrategiaDeCriterio getCriterioEstrategia() {
+		return criterioEstrategia;
+	}
 	public void divisionDeExpensas(float porcentaje, float totalAPagar) {
 		
 	}
