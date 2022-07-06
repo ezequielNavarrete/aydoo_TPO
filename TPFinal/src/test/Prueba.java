@@ -10,6 +10,7 @@ import java.util.Scanner;
 import modelado.Gasto;
 import modelado.GastoComun;
 import modelado.GastoRecurrente;
+import modelado.Persona;
 import modelado.Consorcio;
 
 public class Prueba {
@@ -28,6 +29,7 @@ public class Prueba {
 		String str=  sc.nextLine();              //Lee el input de la consola
 		Consorcio hola=new Consorcio();
 		hola.cargarDatosPruebaGastos();
+		ArrayList <Persona> listaPersonas = new ArrayList<>();
 		List<GastoComun> aver=hola.getListadoDeGastos();
 		List<GastoRecurrente> recu=hola.getListadoGastosRecurrentes();
 		while (!str.equals("0")) {
@@ -69,6 +71,61 @@ public class Prueba {
 					else {
 						if(str.equals("4")) {
 							
+							Persona persona1 = new Persona(null, 41645331);
+							listaPersonas.add(persona1);
+							Persona persona2 = new Persona(null, 40685263);
+							listaPersonas.add(persona2);
+							Persona persona3 = new Persona(null, 38605323);
+							listaPersonas.add(persona3);
+							Persona persona4 = new Persona(null, 42735009);
+							listaPersonas.add(persona4);
+							Persona persona5 = new Persona(null, 38824726);
+							listaPersonas.add(persona5);
+							
+							int eleccion = 6;
+							while (eleccion != 0 ){
+								
+								for (Persona persona : listaPersonas) {
+									System.out.print(" \n");
+									System.out.print("-DNI: " + persona.getDNI() + " \n");
+
+								}
+								System.out.println("Que persona desea notificar? (Ingrese DNI o 0 para salir)");
+								eleccion = sc.nextInt();
+								switch (eleccion) {
+								
+								case 41645331:
+									System.out.print("-" + persona1.getDNI() + " NOTIFICADO" + " \n");
+									System.out.print(" \n");
+									System.out.print("---------");
+									//enviar notificacion x medio seleccionado
+								break;
+								case 40685263:
+									System.out.print("-" + persona2.getDNI() + " NOTIFICADO" + " \n");
+									System.out.print(" \n");
+									System.out.print("---------");
+									//enviar notificacion x medio seleccionado
+								break;
+								case 38605323:
+									System.out.print("-" + persona3.getDNI() + " NOTIFICADO" + " \n");
+									System.out.print(" \n");
+									System.out.print("---------");
+									//enviar notificacion x medio seleccionado
+								break;
+								case 42735009:
+									System.out.print("-" + persona4.getDNI() + " NOTIFICADO" + " \n");
+									System.out.print(" \n");
+									System.out.print("---------");
+									//enviar notificacion x medio seleccionado
+								break;
+								case 38824726:
+									System.out.print("-" + persona5.getDNI() + " NOTIFICADO" + " \n");
+									System.out.print(" \n");
+									System.out.print("---------");
+									//enviar notificacion x medio seleccionado
+								break;
+								}
+							}
 						}
 						else {
 							if(str.equals("5")) {
