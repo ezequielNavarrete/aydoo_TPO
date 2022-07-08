@@ -28,6 +28,14 @@ public class Persona {
 	public int getDNI() {
 		return DNI;
 	}
-	
+	public boolean EsInquilino() {
+		return esInquilino;
+	}
+	public void setEsInquilino(boolean esInquilino) {
+		this.esInquilino = esInquilino;
+	}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
 	
 }

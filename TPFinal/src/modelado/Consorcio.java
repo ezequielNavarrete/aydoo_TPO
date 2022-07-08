@@ -87,7 +87,7 @@ public class Consorcio {
 	}
 	
 	public void generarExpensas(UnidadFuncional unidadFuncional) {
-		
+		 
 	}
 	
 	public void enviarNotificacion(Notificacion notificacion) {
@@ -112,6 +112,83 @@ public class Consorcio {
 		listagasrec.add(segundo);
 		this.listadoGastosRecurrentes=listagasrec;
 	}
-	
-	
+
+	public List<UnidadFuncional> getListadoUnidades() {
+		return listadoUnidades;
+	}
+
+	public void setListadoUnidades(List<UnidadFuncional> listadoUnidades) {
+		this.listadoUnidades = listadoUnidades;
+	}
+
+	public Componente getCuentaBancaria() {
+		return cuentaBancaria;
+	}
+
+	public void setCuentaBancaria(Componente cuentaBancaria) {
+		this.cuentaBancaria = cuentaBancaria;
+	}
+
+	public Criterio getCriterio() {
+		return criterio;
+	}
+
+	public void setCriterio(Criterio criterio) {
+		this.criterio = criterio;
+	}
+
+	public Notificacion getNotificacion() {
+		return notificacion;
+	}
+
+	public void setNotificacion(Notificacion notificacion) {
+		this.notificacion = notificacion;
+	}
+	public void getTrazabilidad(UnidadFuncional unidadFuncional, String mes) {
+		String month=new String();
+		switch(mes){
+			case "enero":
+				month="Jan";
+				break;
+			case "febrero":
+				month="Feb";
+				break;
+			case "marzo":
+				month="Mar";
+				break;
+			case "abril":
+				month="Apr";
+				break;
+			case "mayo":
+				month="May";
+				break;
+			case "junio":
+				month="Jun";
+				break;
+			case "julio":
+				month="Jul";
+				break;
+			case "agosto":
+				month="Aug";
+				break;
+			case "septiembre":
+				month="Sep";
+				break;
+			case "octubre":
+				month="Oct";
+				break;
+			case "noviembre":
+				month="Nov";
+				break;
+			case "diciembre":
+				month="Dec";
+				break;	
+		}
+		for (Factura factura : unidadFuncional.getListadoPagos()){
+			if (factura.getFecha().toString().contains(month)){
+				factura.mostrarDatos();
+			}
+		}
+		 
+	}
 }

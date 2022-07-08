@@ -11,6 +11,9 @@ import modelado.Gasto;
 import modelado.GastoComun;
 import modelado.GastoRecurrente;
 import modelado.Persona;
+import modelado.UnidadFuncional;
+import modelado.Consorcio;
+import modelado.Factura;
 import moduloNotificaciones.Notificacion;
 import moduloNotificaciones.Notificador;
 import moduloNotificaciones.estrategias.Estrategia;
@@ -18,7 +21,6 @@ import moduloNotificaciones.estrategias.EstrategiaDeNotificacion;
 import moduloNotificaciones.estrategias.NotificacionPorEmail;
 import moduloNotificaciones.estrategias.NotificacionPorSMS;
 import moduloNotificaciones.estrategias.NotificacionPorWhatsApp;
-import modelado.Consorcio;
 import test.UsuarioNotificacionMock;
 
 
@@ -26,7 +28,7 @@ public class Prueba {
 
 	public static void main(String[] args) throws ParseException {
 		Scanner sc= new Scanner(System.in);
-		System.out.println("Ingrese acción a realizar : ");
+		System.out.println("Ingrese acciï¿½n a realizar : ");
 		System.out.println("Salir del sistema = 0 ");
 		System.out.println("Cargar gastos de cada mes = 1 ");
 		System.out.println("Cargar gastos recurrentes = 2 ");
@@ -109,7 +111,10 @@ public class Prueba {
 						}
 						else {
 							if(str.equals("5")) {
-								
+								hola.setListadoUnidades(getUnidadesFuncionales(hola));
+								System.out.println("Seleccione mes para ver la trazabilidad de expensas");
+								String mes=sc.nextLine();
+								hola.getTrazabilidad(hola.getListadoUnidades().get(0),mes);
 							}
 							else {
 								if(str.equals("6")) {
@@ -143,7 +148,7 @@ public class Prueba {
 			System.out.println("Desea continuar ? Pulse 0 para salir / escriba otra cosa para continuar");
 			str=  sc.nextLine();
 			if(!str.equals("0")) {
-				System.out.println("Ingrese acción a realizar : ");
+				System.out.println("Ingrese acciï¿½n a realizar : ");
 				System.out.println("Cargar gastos de cada mes = 1 ");
 				System.out.println("Cargar gastos recurrentes = 2 ");
 				System.out.println("Calcular y generar expensas segun criterio = 3 ");
@@ -176,4 +181,18 @@ public class Prueba {
 		return usuariosMock;
 	}
 
+	private static List<UnidadFuncional> getUnidadesFuncionales(Consorcio consorcio) throws ParseException{
+        List<UnidadFuncional> unidadesFunc = new ArrayList<UnidadFuncional>();
+        UnidadFuncional uf = new UnidadFuncional();
+		uf.setMetrosCuadrados(50);
+		uf.setPorcentaje((float) 0.05);
+		List<Factura> facturas= new ArrayList<Factura>();
+		Factura factura1 =new Factura(new SimpleDateFormat("dd/MM/yyyy").parse("01/07/2022"), (float)10000, 10000, 0, true);
+		Factura factura2 =new Factura(new SimpleDateFormat("dd/MM/yyyy").parse("05/07/2022"), (float)12000, 10000, 2000, true);
+		Factura factura3 =new Factura(new SimpleDateFormat("dd/MM/yyyy").parse("29/05/2022"), (float)4000, 4000, 0, true);
+		facturas.add(factura1);facturas.add(factura2);facturas.add(factura3);
+		uf.setListadoPagos(facturas);
+		unidadesFunc.add(uf);
+        return unidadesFunc;
+    }
 }
