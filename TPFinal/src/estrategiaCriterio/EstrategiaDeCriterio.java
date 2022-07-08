@@ -7,5 +7,5 @@ import modelado.Criterio;
 import modelado.UnidadFuncional;
 
 public interface EstrategiaDeCriterio {
-	public void divisionDeExpensas(float fondosReserva);
+	public void divisionDeExpensas(List<UnidadFuncional> listadoUnidades, float totalAPagar, float fondosReserva);
 }

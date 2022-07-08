@@ -130,7 +130,6 @@ public class Prueba {
 								c1.set_estrategia(pagoconfondosdereserva);
 								System.out.println("Cuanto fondos de reserva desea utilizar?");
 								fondoreserva=sc.nextFloat();
-								totalapagar=totalapagar-fondoreserva;
 								c1.divisionDeExpensas(copiaListauni, totalapagar,fondoreserva);
 								System.out.println("Expensas por unidad funcional generadas correctamente");
 							}
@@ -139,7 +138,6 @@ public class Prueba {
 								c1.set_estrategia(pagoygenerarfuturos);
 								System.out.println("Cuanto fondos de reserva desea generar?");
 								fondoreserva=sc.nextFloat();
-								totalapagar=totalapagar-fondoreserva;
 								c1.divisionDeExpensas(copiaListauni, totalapagar,fondoreserva);
 								System.out.println("Expensas por unidad funcional generadas correctamente");
 							}
