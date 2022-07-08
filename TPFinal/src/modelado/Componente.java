@@ -10,7 +10,7 @@ public class Componente {
 	private int tokenSeguridad;
 	
 	public float devolverSaldo() {
-		return 0;
+		return 10000;
 	}
 	
 }

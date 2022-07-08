@@ -9,12 +9,28 @@ public class UnidadFuncional {
 	
 	private int metrosCuadrados;
 	private float porcentaje;
+	private float deuda;
 	private List<Persona> listadoPropietarios;
 	private List<Factura> listadoPagos;
 	private List<Persona> ListadoInquilinos;
 	
+	public UnidadFuncional(int metrosCuadrados, float porcentaje)
+    {
+		this.metrosCuadrados = metrosCuadrados;
+        this.porcentaje = porcentaje ;
+        
+    }
+	
+	public void setDeuda(float deuda) {
+		this.deuda = deuda;
+	}
+	
 	public float getDeuda() {
-		return 0;
+		return deuda;
+	}
+	
+	public float getPorcentaje() {
+		return porcentaje;
 	}
 
 	public int getMetrosCuadrados() {

@@ -97,7 +97,7 @@ public class Consorcio {
 	public void cargarDatosPruebaGastos() {
 		
 		GastoComun gasto1=new GastoComun(15,"desc","generico");
-		GastoComun otro=new GastoComun(27,"prueba","otro");
+		GastoComun otro=new GastoComun(26,"prueba","otro");
 		ArrayList<GastoComun> averhola=new ArrayList<GastoComun>();
 		averhola.add(gasto1);
 		averhola.add(otro);
@@ -112,6 +112,7 @@ public class Consorcio {
 		listagasrec.add(segundo);
 		this.listadoGastosRecurrentes=listagasrec;
 	}
+
 
 	public List<UnidadFuncional> getListadoUnidades() {
 		return listadoUnidades;
@@ -191,4 +192,16 @@ public class Consorcio {
 		}
 		 
 	}
+
+public void cargarDatosPruebaUnidadFuncional() {
+		
+		UnidadFuncional uni1=new UnidadFuncional();
+		UnidadFuncional uni2=new UnidadFuncional();
+		ArrayList<UnidadFuncional> lisuni=new ArrayList<UnidadFuncional>();
+		lisuni.add(uni1);
+		lisuni.add(uni2);
+		this.listadoUnidades=lisuni;
+}
+	
+
 }
