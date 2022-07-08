@@ -1,30 +1,28 @@
 package moduloNotificaciones;
 
 public class Notificacion {
-	
+	private int dni;
+	private String nombre;
 	private String mensaje;
-	private String emailDestinatario;
-	private String telefonoDestinatario;
-	
+
 	public String getMensaje() {
 		return mensaje;
 	}
 	public void setMensaje(String mensaje) {
 		this.mensaje = mensaje;
 	}
-	public String getEmailDestinatario() {
-		return emailDestinatario;
+	public int getDni() {
+		return dni;
 	}
-	public void setEmailDestinatario(String emailDestinatario) {
-		this.emailDestinatario = emailDestinatario;
+	public void setDni(int dni) {
+		this.dni = dni;
 	}
-	public String getTelefonoDestinatario() {
-		return telefonoDestinatario;
+	public String getNombre() {
+		return nombre;
 	}
-	public void setTelefonoDestinatario(String telefonoDestinatario) {
-		this.telefonoDestinatario = telefonoDestinatario;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
-	
-	
 
 }
+
