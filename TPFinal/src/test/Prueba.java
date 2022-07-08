@@ -11,7 +11,16 @@ import modelado.Gasto;
 import modelado.GastoComun;
 import modelado.GastoRecurrente;
 import modelado.Persona;
+import moduloNotificaciones.Notificacion;
+import moduloNotificaciones.Notificador;
+import moduloNotificaciones.estrategias.Estrategia;
+import moduloNotificaciones.estrategias.EstrategiaDeNotificacion;
+import moduloNotificaciones.estrategias.NotificacionPorEmail;
+import moduloNotificaciones.estrategias.NotificacionPorSMS;
+import moduloNotificaciones.estrategias.NotificacionPorWhatsApp;
 import modelado.Consorcio;
+import test.UsuarioNotificacionMock;
+
 
 public class Prueba {
 
@@ -69,63 +78,34 @@ public class Prueba {
 						
 					}
 					else {
-						if(str.equals("4")) {
-							
-							Persona persona1 = new Persona(null, 41645331);
-							listaPersonas.add(persona1);
-							Persona persona2 = new Persona(null, 40685263);
-							listaPersonas.add(persona2);
-							Persona persona3 = new Persona(null, 38605323);
-							listaPersonas.add(persona3);
-							Persona persona4 = new Persona(null, 42735009);
-							listaPersonas.add(persona4);
-							Persona persona5 = new Persona(null, 38824726);
-							listaPersonas.add(persona5);
-							
-							int eleccion = 6;
-							while (eleccion != 0 ){
-								
-								for (Persona persona : listaPersonas) {
-									System.out.print(" \n");
-									System.out.print("-DNI: " + persona.getDNI() + " \n");
+						if (str.equals("4")) {
 
+							Notificador notificador = new Notificador();
+							EstrategiaDeNotificacion notificadorSMS = new NotificacionPorSMS();
+							EstrategiaDeNotificacion notificadorWhatsApp = new NotificacionPorWhatsApp();
+							EstrategiaDeNotificacion notificadorEmail = new NotificacionPorEmail();
+
+							for (UsuarioNotificacionMock usuarioMock : usuariosMock()) {
+								Notificacion notificacion = new Notificacion();
+								notificacion.setDni(usuarioMock.getDni());
+								notificacion.setNombre(usuarioMock.getNombre());
+								notificacion.setMensaje(usuarioMock.getMensaje());
+
+								switch (usuarioMock.getEstrategiaElegida()) {
+								case SMS:
+									notificador.setEstrategia(notificadorSMS);
+									break;
+								case WHATSAPP:
+									notificador.setEstrategia(notificadorWhatsApp);
+									break;
+								case EMAIL:
+									notificador.setEstrategia(notificadorEmail);
+									break;
 								}
-								System.out.println("Que persona desea notificar? (Ingrese DNI o 0 para salir)");
-								eleccion = sc.nextInt();
-								switch (eleccion) {
-								
-								case 41645331:
-									System.out.print("-" + persona1.getDNI() + " NOTIFICADO" + " \n");
-									System.out.print(" \n");
-									System.out.print("---------");
-									//enviar notificacion x medio seleccionado
-								break;
-								case 40685263:
-									System.out.print("-" + persona2.getDNI() + " NOTIFICADO" + " \n");
-									System.out.print(" \n");
-									System.out.print("---------");
-									//enviar notificacion x medio seleccionado
-								break;
-								case 38605323:
-									System.out.print("-" + persona3.getDNI() + " NOTIFICADO" + " \n");
-									System.out.print(" \n");
-									System.out.print("---------");
-									//enviar notificacion x medio seleccionado
-								break;
-								case 42735009:
-									System.out.print("-" + persona4.getDNI() + " NOTIFICADO" + " \n");
-									System.out.print(" \n");
-									System.out.print("---------");
-									//enviar notificacion x medio seleccionado
-								break;
-								case 38824726:
-									System.out.print("-" + persona5.getDNI() + " NOTIFICADO" + " \n");
-									System.out.print(" \n");
-									System.out.print("---------");
-									//enviar notificacion x medio seleccionado
-								break;
-								}
+
+								notificador.enviar(notificacion);
 							}
+
 						}
 						else {
 							if(str.equals("5")) {
@@ -174,7 +154,26 @@ public class Prueba {
 				str=  sc.nextLine();
 			}
 		}
-		      
+			      
+	}
+
+	private static List<UsuarioNotificacionMock> usuariosMock() {
+		List<UsuarioNotificacionMock> usuariosMock = new ArrayList<UsuarioNotificacionMock>();
+
+		UsuarioNotificacionMock 
+		usuarioMock = new UsuarioNotificacionMock(42726600, "Pedro", "Su factura...", Estrategia.EMAIL);
+		usuariosMock.add(usuarioMock);
+
+		usuarioMock = new UsuarioNotificacionMock(43625899, "Lucas", "Su factura...", Estrategia.WHATSAPP);
+		usuariosMock.add(usuarioMock);
+
+		usuarioMock = new UsuarioNotificacionMock(39827390, "Carolina", "Su factura...", Estrategia.SMS);
+		usuariosMock.add(usuarioMock);
+		
+		usuarioMock = new UsuarioNotificacionMock(40236891, "Marcos", "Su factura...", Estrategia.EMAIL);
+		usuariosMock.add(usuarioMock);
+
+		return usuariosMock;
 	}
 
 }
