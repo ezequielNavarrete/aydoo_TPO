@@ -7,11 +7,18 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
+
+import estrategiaCriterio.EstrategiaDeCriterio;
+import estrategiaCriterio.PagoCompleto;
+import estrategiaCriterio.PagoConFondosDeReserva;
+import estrategiaCriterio.PagoYGenerarFuturos;
 import modelado.Gasto;
 import modelado.GastoComun;
 import modelado.GastoRecurrente;
 import modelado.Persona;
 import modelado.Consorcio;
+import modelado.Criterio;
+import modelado.Componente;
 
 public class Prueba {
 
@@ -32,6 +39,9 @@ public class Prueba {
 		ArrayList <Persona> listaPersonas = new ArrayList<>();
 		List<GastoComun> aver=hola.getListadoDeGastos();
 		List<GastoRecurrente> recu=hola.getListadoGastosRecurrentes();
+		EstrategiaDeCriterio pagocompleto=new PagoCompleto();
+		EstrategiaDeCriterio pagoconfondosdereserva=new PagoConFondosDeReserva();
+		EstrategiaDeCriterio pagoygenerarfuturos=new PagoYGenerarFuturos();
 		while (!str.equals("0")) {
 			if(str.equals("1")) {
 				System.out.println("cargar gasto  comun elegido");
@@ -67,6 +77,35 @@ public class Prueba {
 				else {
 					if(str.equals("3")) {
 						
+						Criterio c1=new Criterio(pagocompleto);
+						Componente com1=new Componente();
+						ArrayList<Gasto> copiaLista = new ArrayList<Gasto>(aver);
+						ArrayList<Gasto> copiaListarec = new ArrayList<Gasto>(recu);
+						float saldo;
+						float expensas;
+						System.out.println("Que criterio desea utilizar? (Ingrese 0 para salir)");
+						System.out.println("PagoCompleto = 1 ");
+						System.out.println("PagoConFondosDeReserva = 2 ");
+						System.out.println("PagoYGenerarFuturos = 3 ");
+						String str1=  sc.nextLine();              //Lee el input de la consola
+						
+							if(str1.equals("1")) {
+								saldo=c1.obtencionSaldo(com1);
+								System.out.println(saldo);
+								
+								expensas=c1.calculoDeGastos(copiaListarec, saldo)+c1.calculoDeGastos(copiaLista, saldo);
+								System.out.println(expensas);
+							}
+							else {
+							if(str1.equals("2")) {
+								System.out.println("hola2 ");
+							}
+							else {
+							if(str1.equals("3")) {
+								System.out.println("hola1 ");
+							}
+							}
+							}
 					}
 					else {
 						if(str.equals("4")) {
