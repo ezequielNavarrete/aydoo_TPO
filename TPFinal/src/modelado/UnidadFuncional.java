@@ -10,16 +10,11 @@ public class UnidadFuncional {
 	private int metrosCuadrados;
 	private float porcentaje;
 	private float deuda;
+	private float expensa;
 	private List<Persona> listadoPropietarios;
 	private List<Factura> listadoPagos;
 	private List<Persona> ListadoInquilinos;
 	
-	public UnidadFuncional(int metrosCuadrados, float porcentaje)
-    {
-		this.metrosCuadrados = metrosCuadrados;
-        this.porcentaje = porcentaje ;
-        
-    }
 	
 	public void setDeuda(float deuda) {
 		this.deuda = deuda;
@@ -27,6 +22,14 @@ public class UnidadFuncional {
 	
 	public float getDeuda() {
 		return deuda;
+	}
+	
+	public void setExpensa(float expensa) {
+		this.expensa = expensa;
+	}
+	
+	public float getExpensa() {
+		return expensa;
 	}
 	
 	public float getPorcentaje() {
@@ -41,9 +44,6 @@ public class UnidadFuncional {
 		this.metrosCuadrados = metrosCuadrados;
 	}
 
-	public float getPorcentaje() {
-		return porcentaje;
-	}
 
 	public void setPorcentaje(float porcentaje) {
 		this.porcentaje = porcentaje;
@@ -71,5 +71,9 @@ public class UnidadFuncional {
 
 	public void setListadoInquilinos(List<Persona> listadoInquilinos) {
 		ListadoInquilinos = listadoInquilinos;
+	}
+	public String aStringUnidades() {
+		
+		return ("Metros: " + this.metrosCuadrados + ",Expensas: " + this.expensa );
 	}
 }

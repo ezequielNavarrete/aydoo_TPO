@@ -8,9 +8,16 @@ public class Componente {
 	private String Alias;
 	private Date fecha;
 	private int tokenSeguridad;
+	protected float saldo;
+	
+	
+	public void setSaldo(float saldo) {
+		this.saldo = saldo;
+	}
 	
 	public float devolverSaldo() {
-		return 10000;
+		return saldo;
 	}
+	
 	
 }

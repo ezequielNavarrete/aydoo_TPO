@@ -1,4 +1,5 @@
 package modelado;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -130,13 +131,6 @@ public class Consorcio {
 		this.cuentaBancaria = cuentaBancaria;
 	}
 
-	public Criterio getCriterio() {
-		return criterio;
-	}
-
-	public void setCriterio(Criterio criterio) {
-		this.criterio = criterio;
-	}
 
 	public Notificacion getNotificacion() {
 		return notificacion;
@@ -197,10 +191,15 @@ public void cargarDatosPruebaUnidadFuncional() {
 		
 		UnidadFuncional uni1=new UnidadFuncional();
 		UnidadFuncional uni2=new UnidadFuncional();
+		uni1.setMetrosCuadrados(50);
+		uni1.setPorcentaje((float) 0.05);
+		uni2.setMetrosCuadrados(70);
+		uni2.setPorcentaje((float) 0.07);
 		ArrayList<UnidadFuncional> lisuni=new ArrayList<UnidadFuncional>();
 		lisuni.add(uni1);
 		lisuni.add(uni2);
 		this.listadoUnidades=lisuni;
+		
 }
 	
 
