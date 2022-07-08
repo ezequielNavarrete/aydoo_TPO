@@ -39,7 +39,7 @@ public class Prueba {
 
 	public static void main(String[] args) throws ParseException {
 		Scanner sc= new Scanner(System.in);
-		System.out.println("Ingrese acci�n a realizar : ");
+		System.out.println("Ingrese accion a realizar : ");
 		System.out.println("Salir del sistema = 0 ");
 		System.out.println("Cargar gastos de cada mes = 1 ");
 		System.out.println("Cargar gastos recurrentes = 2 ");
@@ -173,9 +173,18 @@ public class Prueba {
 					break;
 				case "5":
 					con.setListadoUnidades(getUnidadesFuncionales(con));
+					ArrayList<UnidadFuncional> copiaListauniii = new ArrayList<UnidadFuncional>(con.getListadoUnidades());
+					while(!copiaListauniii.isEmpty()) {
+						UnidadFuncional pri=copiaListauniii.get(0);
+						String mensa=pri.aStringUnidadesOtro();
+						System.out.println(mensa);
+						copiaListauniii.remove(0);
+					}
+					System.out.println("Seleccione el id de la unidad funcional");
+					String idprueba=sc.nextLine();
 					System.out.println("Seleccione mes para ver la trazabilidad de expensas");
 					String mes=sc.nextLine();
-					con.getTrazabilidad(con.getListadoUnidades().get(0),mes);
+					con.getTrazabilidad(con.getUnidadFuncional(Integer.parseInt(idprueba)),mes);
 					break;
 				case "6":
 					ArrayList<GastoComun> copiaListaComun = new ArrayList<GastoComun>(aver);
@@ -201,7 +210,7 @@ public class Prueba {
 			System.out.println("Desea continuar ? Pulse 0 para salir / escriba otra cosa para continuar");
 			str=  sc.nextLine();
 			if(!str.equals("0")) {
-				System.out.println("Ingrese acci�n a realizar : ");
+				System.out.println("Ingrese accion a realizar : ");
 				System.out.println("Cargar gastos de cada mes = 1 ");
 				System.out.println("Cargar gastos recurrentes = 2 ");
 				System.out.println("Calcular y generar expensas segun criterio = 3 ");
@@ -236,16 +245,29 @@ public class Prueba {
 
 	private static List<UnidadFuncional> getUnidadesFuncionales(Consorcio consorcio) throws ParseException{
         List<UnidadFuncional> unidadesFunc = new ArrayList<UnidadFuncional>();
-        UnidadFuncional uf = new UnidadFuncional();
+        UnidadFuncional uf = new UnidadFuncional(3);
+        UnidadFuncional segun=new UnidadFuncional(5);
 		uf.setMetrosCuadrados(50);
 		uf.setPorcentaje((float) 0.05);
+		segun.setMetrosCuadrados(32);
+		segun.setPorcentaje((float) 0.05);
 		List<Factura> facturas= new ArrayList<Factura>();
+		List<Factura>otrasFacturas=new  ArrayList<Factura>();
 		Factura factura1 =new Factura(new SimpleDateFormat("dd/MM/yyyy").parse("01/07/2022"), (float)10000, 10000, 0, true);
 		Factura factura2 =new Factura(new SimpleDateFormat("dd/MM/yyyy").parse("05/07/2022"), (float)12000, 10000, 2000, true);
 		Factura factura3 =new Factura(new SimpleDateFormat("dd/MM/yyyy").parse("29/05/2022"), (float)4000, 4000, 0, true);
 		facturas.add(factura1);facturas.add(factura2);facturas.add(factura3);
 		uf.setListadoPagos(facturas);
+		
+		
+		
 		unidadesFunc.add(uf);
+		Factura facturapri=new  Factura(new SimpleDateFormat("dd/MM/yyyy").parse("24/06/2022"), (float)10000, 10000, 0, true);
+		otrasFacturas.add(facturapri);
+		segun.setListadoPagos(otrasFacturas);
+		unidadesFunc.add(segun);
+
+		
         return unidadesFunc;
     }
 }

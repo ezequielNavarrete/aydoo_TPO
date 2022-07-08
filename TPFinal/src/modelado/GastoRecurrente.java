@@ -18,8 +18,8 @@ public class GastoRecurrente extends Gasto{
 
 	public String aStringRecurrente() {
 		//		return nombre + "( " + legajo + " )";
-		return ("Descripcion: " + this.descripcion + ", tipo expensa: " + this.tipoExpensa + ",monto: " + this.monto + ",vencimiento: " 
-				+ "( " + this.vencimiento + " ) " + ",Duracion: "  +   "( " + this.duracionEnMeses + " ) " );
+		return ("Descripcion: " + this.descripcion + ", tipo expensa: " + this.tipoExpensa + ", monto: " + this.monto + ", vencimiento: " 
+				+ "( " + this.vencimiento + " ) " + ", Duracion: "  +   "( " + this.duracionEnMeses + " ) " );
 	}
 
 }

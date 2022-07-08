@@ -13,7 +13,7 @@ public class GastoComun extends Gasto{
 
 	public String aStringComun() {
 		//		return nombre + "( " + legajo + " )";
-		return ("Descripcion: " + this.descripcion + ", tipo expensa: " + this.tipoExpensa + ",monto: " + this.monto );
+		return ("Descripcion: " + this.descripcion + ", tipo expensa: " + this.tipoExpensa + ", monto: " + this.monto );
 	}
 
 }

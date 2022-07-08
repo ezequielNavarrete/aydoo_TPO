@@ -7,6 +7,7 @@ import modelado.Factura;
 
 public class UnidadFuncional {
 	
+	private int id;
 	private int metrosCuadrados;
 	private float porcentaje;
 	private float deuda;
@@ -15,7 +16,22 @@ public class UnidadFuncional {
 	private List<Factura> listadoPagos;
 	private List<Persona> ListadoInquilinos;
 	
+	public UnidadFuncional() {
+		
+	}
 	
+	public UnidadFuncional(int id) {
+		this.id=id;
+	}
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public void setDeuda(float deuda) {
 		this.deuda = deuda;
 	}
@@ -72,8 +88,13 @@ public class UnidadFuncional {
 	public void setListadoInquilinos(List<Persona> listadoInquilinos) {
 		ListadoInquilinos = listadoInquilinos;
 	}
+	
+	public String aStringUnidadesOtro() {
+		return ("Id : " + this.id + " Metros: " + this.metrosCuadrados  );
+	}
+	
 	public String aStringUnidades() {
 		
-		return ("Metros: " + this.metrosCuadrados + ",Expensas: " + this.expensa );
+		return ("Id : " + this.id + " Metros: " + this.metrosCuadrados + ",Expensas: " + this.expensa );
 	}
 }

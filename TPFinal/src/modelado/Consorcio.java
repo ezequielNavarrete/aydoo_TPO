@@ -114,6 +114,17 @@ public class Consorcio {
 		this.listadoGastosRecurrentes=listagasrec;
 	}
 
+	public UnidadFuncional getUnidadFuncional(int id) {
+		List<UnidadFuncional> lista=this.getListadoUnidades();
+		while (!lista.isEmpty()) {
+			UnidadFuncional primera=lista.get(0);
+			if (primera.getId()==id) {
+				return primera;
+			}
+			lista.remove(0);
+		}
+		return null;
+	}
 
 	public List<UnidadFuncional> getListadoUnidades() {
 		return listadoUnidades;
@@ -191,10 +202,14 @@ public void cargarDatosPruebaUnidadFuncional() {
 		
 		UnidadFuncional uni1=new UnidadFuncional();
 		UnidadFuncional uni2=new UnidadFuncional();
+		uni1.setId(5);
+		uni2.setId(3);
 		uni1.setMetrosCuadrados(50);
 		uni1.setPorcentaje((float) 0.05);
 		uni2.setMetrosCuadrados(70);
 		uni2.setPorcentaje((float) 0.07);
+		uni1.setExpensa(153);
+		uni2.setExpensa(635);
 		ArrayList<UnidadFuncional> lisuni=new ArrayList<UnidadFuncional>();
 		lisuni.add(uni1);
 		lisuni.add(uni2);
