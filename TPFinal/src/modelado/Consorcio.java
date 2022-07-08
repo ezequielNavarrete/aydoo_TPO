@@ -97,8 +97,8 @@ public class Consorcio {
 	
 	public void cargarDatosPruebaGastos() {
 		
-		GastoComun gasto1=new GastoComun(15,"desc","generico");
-		GastoComun otro=new GastoComun(26,"prueba","otro");
+		GastoComun gasto1=new GastoComun(15,"desc","Ordinaria");
+		GastoComun otro=new GastoComun(26,"prueba","Extraordinaria");
 		ArrayList<GastoComun> averhola=new ArrayList<GastoComun>();
 		averhola.add(gasto1);
 		averhola.add(otro);
@@ -106,8 +106,8 @@ public class Consorcio {
 		
 		//GastoRecurrente(float monto, String descripcion, String tipoExpensa,Date vencimiento,int duracionEnMeses) {
 		Date fecha=new Date(123,5,15);
-		GastoRecurrente primero=new GastoRecurrente(42,"primero","tipo",fecha,5);
-		GastoRecurrente segundo=new GastoRecurrente(630,"segundo","abc",fecha,3);
+		GastoRecurrente primero=new GastoRecurrente(42,"primero","GastoParticular",fecha,5);
+		GastoRecurrente segundo=new GastoRecurrente(630,"segundo","FondoDeReserva",fecha,3);
 		ArrayList<GastoRecurrente> listagasrec=new ArrayList<GastoRecurrente>();
 		listagasrec.add(primero);
 		listagasrec.add(segundo);
