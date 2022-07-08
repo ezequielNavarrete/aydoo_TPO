@@ -107,7 +107,7 @@ public class Prueba {
 					System.out.println("PagoCompleto = 1 ");
 					System.out.println("PagoConFondosDeReserva = 2 ");
 					System.out.println("PagoYGenerarFuturos = 3 ");
-					System.out.println("Consultar Saldo = 4 ");
+					System.out.println("Consultar Saldo y listado expensas = 4 ");
 					String str1=  sc.nextLine();              //Lee el input de la consola
 
 					totalapagar=c1.calculoDeGastos(copiaListarec)+c1.calculoDeGastos(copiaLista);
@@ -123,6 +123,7 @@ public class Prueba {
 								System.out.println("Cuanto fondos de reserva desea utilizar?");
 								fondoreserva=sc.nextFloat();
 								c1.divisionDeExpensas(copiaListauni, totalapagar,fondoreserva);
+								com1.setSaldo(com1.devolverSaldo()-fondoreserva);
 								System.out.println("Expensas por unidad funcional generadas correctamente");
 								break;
 							case "3":
@@ -130,6 +131,7 @@ public class Prueba {
 								System.out.println("Cuanto fondos de reserva desea generar?");
 								fondoreserva=sc.nextFloat();
 								c1.divisionDeExpensas(copiaListauni, totalapagar,fondoreserva);
+								com1.setSaldo(com1.devolverSaldo()+fondoreserva);
 								System.out.println("Expensas por unidad funcional generadas correctamente");
 								break;
 							case "4":
