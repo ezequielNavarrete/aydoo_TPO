@@ -3,16 +3,23 @@ package test;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
+
+import estrategiaCriterio.EstrategiaDeCriterio;
+import estrategiaCriterio.PagoCompleto;
+import estrategiaCriterio.PagoConFondosDeReserva;
+import estrategiaCriterio.PagoYGenerarFuturos;
 import modelado.Gasto;
 import modelado.GastoComun;
 import modelado.GastoRecurrente;
 import modelado.Persona;
 import modelado.UnidadFuncional;
 import modelado.Consorcio;
+
 import modelado.Factura;
 import moduloNotificaciones.Notificacion;
 import moduloNotificaciones.Notificador;
@@ -22,6 +29,10 @@ import moduloNotificaciones.estrategias.NotificacionPorEmail;
 import moduloNotificaciones.estrategias.NotificacionPorSMS;
 import moduloNotificaciones.estrategias.NotificacionPorWhatsApp;
 import test.UsuarioNotificacionMock;
+
+
+import modelado.Criterio;
+import modelado.Componente;
 
 
 public class Prueba {
@@ -40,9 +51,16 @@ public class Prueba {
 		String str=  sc.nextLine();              //Lee el input de la consola
 		Consorcio hola=new Consorcio();
 		hola.cargarDatosPruebaGastos();
+		hola.cargarDatosPruebaUnidadFuncional();
 		ArrayList <Persona> listaPersonas = new ArrayList<>();
 		List<GastoComun> aver=hola.getListadoDeGastos();
 		List<GastoRecurrente> recu=hola.getListadoGastosRecurrentes();
+		List<UnidadFuncional> unif=hola.getListadoUnidades();
+		EstrategiaDeCriterio pagocompleto=new PagoCompleto();
+		EstrategiaDeCriterio pagoconfondosdereserva=new PagoConFondosDeReserva();
+		EstrategiaDeCriterio pagoygenerarfuturos=new PagoYGenerarFuturos();
+		Componente com1=new Componente();
+		com1.setSaldo(100000);
 		while (!str.equals("0")) {
 			if(str.equals("1")) {
 				System.out.println("cargar gasto  comun elegido");
@@ -78,6 +96,70 @@ public class Prueba {
 				else {
 					if(str.equals("3")) {
 						
+						Criterio c1=new Criterio(pagocompleto);
+					
+						ArrayList<Gasto> copiaLista = new ArrayList<Gasto>(aver);
+						ArrayList<Gasto> copiaListarec = new ArrayList<Gasto>(recu);
+						ArrayList<UnidadFuncional> copiaListauni = new ArrayList<UnidadFuncional>(unif);
+						float totalapagar;
+						float fondoreserva=0;
+						
+						System.out.println("Que criterio desea utilizar? (Ingrese 0 para salir)");
+						System.out.println("PagoCompleto = 1 ");
+						System.out.println("PagoConFondosDeReserva = 2 ");
+						System.out.println("PagoYGenerarFuturos = 3 ");
+						System.out.println("Consultar Saldo = 4 ");
+						String str1=  sc.nextLine();              //Lee el input de la consola
+						
+						totalapagar=c1.calculoDeGastos(copiaListarec)+c1.calculoDeGastos(copiaLista);
+						
+							if(str1.equals("1")) {
+						
+							   System.out.println("Total de Gastos:");
+								System.out.println(totalapagar);
+								
+								
+								c1.divisionDeExpensas(copiaListauni, totalapagar,fondoreserva);
+								System.out.println("Expensas por unidad funcional generadas correctamente");
+								
+								
+							}
+							else {
+							if(str1.equals("2")) {
+								
+								c1.set_estrategia(pagoconfondosdereserva);
+								System.out.println("Cuanto fondos de reserva desea utilizar?");
+								fondoreserva=sc.nextFloat();
+								totalapagar=totalapagar-fondoreserva;
+								c1.divisionDeExpensas(copiaListauni, totalapagar,fondoreserva);
+								System.out.println("Expensas por unidad funcional generadas correctamente");
+							}
+							else {
+							if(str1.equals("3")) {
+								c1.set_estrategia(pagoygenerarfuturos);
+								System.out.println("Cuanto fondos de reserva desea generar?");
+								fondoreserva=sc.nextFloat();
+								totalapagar=totalapagar-fondoreserva;
+								c1.divisionDeExpensas(copiaListauni, totalapagar,fondoreserva);
+								System.out.println("Expensas por unidad funcional generadas correctamente");
+							}
+							else {
+								if(str1.equals("4")) {
+									totalapagar=c1.obtencionSaldo(com1);
+									System.out.println("Saldo en Cuenta Bancaria y listado expensas");
+									System.out.println(totalapagar);
+									
+									while(!copiaListauni.isEmpty()) {
+										UnidadFuncional pri=copiaListauni.get(0);
+										String mensa=pri.aStringUnidades();
+										System.out.println(mensa);
+										copiaListauni.remove(0);
+									}
+									
+								}
+							}
+							}
+							}
 					}
 					else {
 						if (str.equals("4")) {

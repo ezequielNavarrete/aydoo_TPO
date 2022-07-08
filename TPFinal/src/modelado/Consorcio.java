@@ -1,4 +1,5 @@
 package modelado;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -97,7 +98,7 @@ public class Consorcio {
 	public void cargarDatosPruebaGastos() {
 		
 		GastoComun gasto1=new GastoComun(15,"desc","generico");
-		GastoComun otro=new GastoComun(27,"prueba","otro");
+		GastoComun otro=new GastoComun(26,"prueba","otro");
 		ArrayList<GastoComun> averhola=new ArrayList<GastoComun>();
 		averhola.add(gasto1);
 		averhola.add(otro);
@@ -112,6 +113,7 @@ public class Consorcio {
 		listagasrec.add(segundo);
 		this.listadoGastosRecurrentes=listagasrec;
 	}
+
 
 	public List<UnidadFuncional> getListadoUnidades() {
 		return listadoUnidades;
@@ -129,13 +131,6 @@ public class Consorcio {
 		this.cuentaBancaria = cuentaBancaria;
 	}
 
-	public Criterio getCriterio() {
-		return criterio;
-	}
-
-	public void setCriterio(Criterio criterio) {
-		this.criterio = criterio;
-	}
 
 	public Notificacion getNotificacion() {
 		return notificacion;
@@ -191,4 +186,21 @@ public class Consorcio {
 		}
 		 
 	}
+
+public void cargarDatosPruebaUnidadFuncional() {
+		
+		UnidadFuncional uni1=new UnidadFuncional();
+		UnidadFuncional uni2=new UnidadFuncional();
+		uni1.setMetrosCuadrados(50);
+		uni1.setPorcentaje((float) 0.05);
+		uni2.setMetrosCuadrados(70);
+		uni2.setPorcentaje((float) 0.07);
+		ArrayList<UnidadFuncional> lisuni=new ArrayList<UnidadFuncional>();
+		lisuni.add(uni1);
+		lisuni.add(uni2);
+		this.listadoUnidades=lisuni;
+		
+}
+	
+
 }
