@@ -174,6 +174,7 @@ public class Prueba {
 					System.out.println("Seleccione mes para ver la trazabilidad de expensas");
 					String mes=sc.nextLine();
 					con.getTrazabilidad(con.getListadoUnidades().get(0),mes);
+					break;
 				case "6":
 					ArrayList<GastoComun> copiaListaComun = new ArrayList<GastoComun>(aver);
 					while (!copiaListaComun.isEmpty()){
@@ -181,7 +182,8 @@ public class Prueba {
 						String mensaje=primero.aStringComun();
 						System.out.println(mensaje);
 						copiaListaComun.remove(0);
-					}								
+					}
+					break;								
 				case "7":
 					ArrayList<GastoRecurrente> copiarecu=new ArrayList<GastoRecurrente>(recu);
 					while(!copiarecu.isEmpty()) {
