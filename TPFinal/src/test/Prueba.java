@@ -49,40 +49,42 @@ public class Prueba {
 		System.out.println("Comprobar gastos comunes de cada mes = 6 ");
 		System.out.println("Comprobar gastos recurrentes de cada mes = 7 ");
 		String str=  sc.nextLine();              //Lee el input de la consola
-		Consorcio hola=new Consorcio();
-		hola.cargarDatosPruebaGastos();
-		hola.cargarDatosPruebaUnidadFuncional();
-		ArrayList <Persona> listaPersonas = new ArrayList<>();
-		List<GastoComun> aver=hola.getListadoDeGastos();
-		List<GastoRecurrente> recu=hola.getListadoGastosRecurrentes();
-		List<UnidadFuncional> unif=hola.getListadoUnidades();
+		Consorcio con=new Consorcio();
+		con.cargarDatosPruebaGastos();
+		con.cargarDatosPruebaUnidadFuncional();
+		List<GastoComun> aver=con.getListadoDeGastos();
+		List<GastoRecurrente> recu=con.getListadoGastosRecurrentes();
+		List<UnidadFuncional> unif=con.getListadoUnidades();
 		EstrategiaDeCriterio pagocompleto=new PagoCompleto();
 		EstrategiaDeCriterio pagoconfondosdereserva=new PagoConFondosDeReserva();
 		EstrategiaDeCriterio pagoygenerarfuturos=new PagoYGenerarFuturos();
 		Componente com1=new Componente();
 		com1.setSaldo(100000);
+		String descripcion= new String();
+		float monto= Float.parseFloat("0.0");
+		String tipoExpensa=new String();
 		while (!str.equals("0")) {
-			if(str.equals("1")) {
-				System.out.println("cargar gasto  comun elegido");
-				System.out.println("Seleccione descripcion del gasto: ");
-				String descripcion=sc.nextLine();
-				System.out.println("Seleccione monto del gasto: ");
-				float monto=Float.parseFloat(sc.nextLine());
-				System.out.println("Seleccione el tipo de expensa del gasto: ");
-				String tipoExpensa=sc.nextLine();
-				GastoComun gasto=new GastoComun(monto,descripcion,tipoExpensa);
-				aver.add(gasto);
-				System.out.println("Creacion exitosa");
-			}
-			else {
-				if(str.equals("2")) {
+			switch(str){
+				case "1":
 					System.out.println("cargar gasto  comun elegido");
 					System.out.println("Seleccione descripcion del gasto: ");
-					String descripcion=sc.nextLine();
+					descripcion=sc.nextLine();
 					System.out.println("Seleccione monto del gasto: ");
-					float monto=Float.parseFloat(sc.nextLine());
+					monto=Float.parseFloat(sc.nextLine());
 					System.out.println("Seleccione el tipo de expensa del gasto: ");
-					String tipoExpensa=sc.nextLine();
+					tipoExpensa=sc.nextLine();
+					GastoComun gasto=new GastoComun(monto,descripcion,tipoExpensa);
+					aver.add(gasto);
+					System.out.println("Creacion exitosa");
+					break;
+				case "2":
+					System.out.println("cargar gasto  comun elegido");
+					System.out.println("Seleccione descripcion del gasto: ");
+					descripcion=sc.nextLine();
+					System.out.println("Seleccione monto del gasto: ");
+					monto=Float.parseFloat(sc.nextLine());
+					System.out.println("Seleccione el tipo de expensa del gasto: ");
+					tipoExpensa=sc.nextLine();
 					System.out.println("Seleccione el vencimiento del gasto: ");
 					String vencimiento=sc.nextLine();
 					System.out.println("Seleccione la duracion en meses del gasto: ");
@@ -91,139 +93,106 @@ public class Prueba {
 					GastoRecurrente gastorec=new GastoRecurrente(monto,descripcion,tipoExpensa,venc,duracion);
 					recu.add(gastorec);
 					System.out.println("Creacion exitosa");
-					
-				}
-				else {
-					if(str.equals("3")) {
-						
-						Criterio c1=new Criterio(pagocompleto);
-					
-						ArrayList<Gasto> copiaLista = new ArrayList<Gasto>(aver);
-						ArrayList<Gasto> copiaListarec = new ArrayList<Gasto>(recu);
-						ArrayList<UnidadFuncional> copiaListauni = new ArrayList<UnidadFuncional>(unif);
-						float totalapagar;
-						float fondoreserva=0;
-						
-						System.out.println("Que criterio desea utilizar? (Ingrese 0 para salir)");
-						System.out.println("PagoCompleto = 1 ");
-						System.out.println("PagoConFondosDeReserva = 2 ");
-						System.out.println("PagoYGenerarFuturos = 3 ");
-						System.out.println("Consultar Saldo = 4 ");
-						String str1=  sc.nextLine();              //Lee el input de la consola
-						
-						totalapagar=c1.calculoDeGastos(copiaListarec)+c1.calculoDeGastos(copiaLista);
-						
-							if(str1.equals("1")) {
-						
-							   System.out.println("Total de Gastos:");
+					break;
+				case "3":
+					Criterio c1=new Criterio(pagocompleto);
+
+					ArrayList<Gasto> copiaLista = new ArrayList<Gasto>(aver);
+					ArrayList<Gasto> copiaListarec = new ArrayList<Gasto>(recu);
+					ArrayList<UnidadFuncional> copiaListauni = new ArrayList<UnidadFuncional>(unif);
+					float totalapagar;
+					float fondoreserva=0;
+
+					System.out.println("Que criterio desea utilizar? (Ingrese 0 para salir)");
+					System.out.println("PagoCompleto = 1 ");
+					System.out.println("PagoConFondosDeReserva = 2 ");
+					System.out.println("PagoYGenerarFuturos = 3 ");
+					System.out.println("Consultar Saldo = 4 ");
+					String str1=  sc.nextLine();              //Lee el input de la consola
+
+					totalapagar=c1.calculoDeGastos(copiaListarec)+c1.calculoDeGastos(copiaLista);
+						switch (str1){
+							case "1":
+								System.out.println("Total de Gastos:");
 								System.out.println(totalapagar);
-								
-								
 								c1.divisionDeExpensas(copiaListauni, totalapagar,fondoreserva);
 								System.out.println("Expensas por unidad funcional generadas correctamente");
-								
-								
-							}
-							else {
-							if(str1.equals("2")) {
-								
+								break;
+							case "2":
 								c1.set_estrategia(pagoconfondosdereserva);
 								System.out.println("Cuanto fondos de reserva desea utilizar?");
 								fondoreserva=sc.nextFloat();
 								c1.divisionDeExpensas(copiaListauni, totalapagar,fondoreserva);
 								System.out.println("Expensas por unidad funcional generadas correctamente");
-							}
-							else {
-							if(str1.equals("3")) {
+								break;
+							case "3":
 								c1.set_estrategia(pagoygenerarfuturos);
 								System.out.println("Cuanto fondos de reserva desea generar?");
 								fondoreserva=sc.nextFloat();
 								c1.divisionDeExpensas(copiaListauni, totalapagar,fondoreserva);
 								System.out.println("Expensas por unidad funcional generadas correctamente");
-							}
-							else {
-								if(str1.equals("4")) {
-									totalapagar=c1.obtencionSaldo(com1);
-									System.out.println("Saldo en Cuenta Bancaria y listado expensas");
-									System.out.println(totalapagar);
-									
-									while(!copiaListauni.isEmpty()) {
-										UnidadFuncional pri=copiaListauni.get(0);
-										String mensa=pri.aStringUnidades();
-										System.out.println(mensa);
-										copiaListauni.remove(0);
-									}
-									
+								break;
+							case "4":
+								totalapagar=c1.obtencionSaldo(com1);
+								System.out.println("Saldo en Cuenta Bancaria y listado expensas");
+								System.out.println(totalapagar);
+								while(!copiaListauni.isEmpty()) {
+									UnidadFuncional pri=copiaListauni.get(0);
+									String mensa=pri.aStringUnidades();
+									System.out.println(mensa);
+									copiaListauni.remove(0);
 								}
-							}
-							}
-							}
-					}
-					else {
-						if (str.equals("4")) {
-
-							Notificador notificador = new Notificador();
-							EstrategiaDeNotificacion notificadorSMS = new NotificacionPorSMS();
-							EstrategiaDeNotificacion notificadorWhatsApp = new NotificacionPorWhatsApp();
-							EstrategiaDeNotificacion notificadorEmail = new NotificacionPorEmail();
-
-							for (UsuarioNotificacionMock usuarioMock : usuariosMock()) {
-								Notificacion notificacion = new Notificacion();
-								notificacion.setDni(usuarioMock.getDni());
-								notificacion.setNombre(usuarioMock.getNombre());
-								notificacion.setMensaje(usuarioMock.getMensaje());
-
-								switch (usuarioMock.getEstrategiaElegida()) {
-								case SMS:
-									notificador.setEstrategia(notificadorSMS);
-									break;
-								case WHATSAPP:
-									notificador.setEstrategia(notificadorWhatsApp);
-									break;
-								case EMAIL:
-									notificador.setEstrategia(notificadorEmail);
-									break;
-								}
-
-								notificador.enviar(notificacion);
-							}
-
+								break;
 						}
-						else {
-							if(str.equals("5")) {
-								hola.setListadoUnidades(getUnidadesFuncionales(hola));
-								System.out.println("Seleccione mes para ver la trazabilidad de expensas");
-								String mes=sc.nextLine();
-								hola.getTrazabilidad(hola.getListadoUnidades().get(0),mes);
+					break;
+				case "4":
+					Notificador notificador = new Notificador();
+						EstrategiaDeNotificacion notificadorSMS = new NotificacionPorSMS();
+						EstrategiaDeNotificacion notificadorWhatsApp = new NotificacionPorWhatsApp();
+						EstrategiaDeNotificacion notificadorEmail = new NotificacionPorEmail();
+						for (UsuarioNotificacionMock usuarioMock : usuariosMock()) {
+							Notificacion notificacion = new Notificacion();
+							notificacion.setDni(usuarioMock.getDni());
+							notificacion.setNombre(usuarioMock.getNombre());
+							notificacion.setMensaje(usuarioMock.getMensaje());
+							switch (usuarioMock.getEstrategiaElegida()) {
+							case SMS:
+								notificador.setEstrategia(notificadorSMS);
+								break;
+							case WHATSAPP:
+								notificador.setEstrategia(notificadorWhatsApp);
+								break;
+							case EMAIL:
+								notificador.setEstrategia(notificadorEmail);
+								break;
 							}
-							else {
-								if(str.equals("6")) {
-									ArrayList<GastoComun> copiaLista = new ArrayList<GastoComun>(aver);
-									while (!copiaLista.isEmpty()){
-										GastoComun primero=copiaLista.get(0);
-										String mensaje=primero.aStringComun();
-										System.out.println(mensaje);
-										copiaLista.remove(0);
-									}								
-									}
-								else {
-									if(str.equals("7")) {
-										ArrayList<GastoRecurrente> copiarecu=new ArrayList<GastoRecurrente>(recu);
-										while(!copiarecu.isEmpty()) {
-											GastoRecurrente pri=copiarecu.get(0);
-											String mensa=pri.aStringRecurrente();
-											System.out.println(mensa);
-											copiarecu.remove(0);
-										}
-									}
-									else {
-										System.out.println("Ingrese un comando valido");
-								}
-								}
-							}
+							notificador.enviar(notificacion);
 						}
+					break;
+				case "5":
+					con.setListadoUnidades(getUnidadesFuncionales(con));
+					System.out.println("Seleccione mes para ver la trazabilidad de expensas");
+					String mes=sc.nextLine();
+					con.getTrazabilidad(con.getListadoUnidades().get(0),mes);
+				case "6":
+					ArrayList<GastoComun> copiaListaComun = new ArrayList<GastoComun>(aver);
+					while (!copiaListaComun.isEmpty()){
+						GastoComun primero=copiaListaComun.get(0);
+						String mensaje=primero.aStringComun();
+						System.out.println(mensaje);
+						copiaListaComun.remove(0);
+					}								
+				case "7":
+					ArrayList<GastoRecurrente> copiarecu=new ArrayList<GastoRecurrente>(recu);
+					while(!copiarecu.isEmpty()) {
+						GastoRecurrente pri=copiarecu.get(0);
+						String mensa=pri.aStringRecurrente();
+						System.out.println(mensa);
+						copiarecu.remove(0);
 					}
-				}
+					break;
+				default:
+					System.out.println("Ingrese un comando valido");	
 			}
 			System.out.println("Desea continuar ? Pulse 0 para salir / escriba otra cosa para continuar");
 			str=  sc.nextLine();
