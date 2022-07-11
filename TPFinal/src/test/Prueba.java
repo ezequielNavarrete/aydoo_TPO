@@ -17,6 +17,7 @@ import modelado.Gasto;
 import modelado.GastoComun;
 import modelado.GastoRecurrente;
 import modelado.Persona;
+import modelado.TipoExpensa;
 import modelado.UnidadFuncional;
 import modelado.Consorcio;
 
@@ -71,30 +72,62 @@ public class Prueba {
 					descripcion=sc.nextLine();
 					System.out.println("Seleccione monto del gasto: ");
 					monto=Float.parseFloat(sc.nextLine());
-					System.out.println("Seleccione el tipo de expensa del gasto: ");
+					System.out.println("Seleccione el tipo de expensa del gasto: (Ordinaria,Extraordinaria,GastoParticular,FondoDeReserva)");
 					tipoExpensa=sc.nextLine();
-
-					con.crearGasto(monto,descripcion,tipoExpensa);
-
-					System.out.println("Creacion exitosa");
+					switch(tipoExpensa) {
+						case"Ordinaria":
+							con.crearGasto(monto,descripcion,TipoExpensa.Ordinaria);
+							System.out.println("Creacion exitosa");
+							break;
+						case"Extraordinaria":
+							con.crearGasto(monto,descripcion,TipoExpensa.Extraordinaria);
+							System.out.println("Creacion exitosa");
+							break;
+						case"GastoParticular":
+							con.crearGasto(monto,descripcion,TipoExpensa.GastoParticular);
+							System.out.println("Creacion exitosa");
+							break;
+						case"FondoDeReserva":
+							con.crearGasto(monto,descripcion,TipoExpensa.FondoDeReserva);
+							System.out.println("Creacion exitosa");
+							break;
+						default:
+							System.out.println("Ingrese un comando valido");
+					}
 					break;
 				case "2":
-					System.out.println("cargar gasto  comun elegido");
+					System.out.println("cargar gasto  recurrente elegido");
 					System.out.println("Seleccione descripcion del gasto: ");
 					descripcion=sc.nextLine();
 					System.out.println("Seleccione monto del gasto: ");
 					monto=Float.parseFloat(sc.nextLine());
-					System.out.println("Seleccione el tipo de expensa del gasto: ");
-					tipoExpensa=sc.nextLine();
 					System.out.println("Seleccione el vencimiento del gasto: ");
 					String vencimiento=sc.nextLine();
 					System.out.println("Seleccione la duracion en meses del gasto: ");
 					int duracion=Integer.parseInt(sc.nextLine());
 					Date venc=new SimpleDateFormat("dd/MM/yyyy").parse(vencimiento);
-					
-					con.crearGastoRecurrente(monto, descripcion, tipoExpensa, venc, duracion);
-
-					System.out.println("Creacion exitosa");
+					System.out.println("Seleccione el tipo de expensa del gasto: (Ordinaria,Extraordinaria,GastoParticular,FondoDeReserva)");
+					tipoExpensa=sc.nextLine();
+					switch(tipoExpensa) {
+					case"Ordinaria":
+						con.crearGastoRecurrente(monto,descripcion,TipoExpensa.Ordinaria,venc,duracion);
+						System.out.println("Creacion exitosa");
+						break;
+					case"Extraordinaria":
+						con.crearGastoRecurrente(monto,descripcion,TipoExpensa.Extraordinaria,venc,duracion);
+						System.out.println("Creacion exitosa");
+						break;
+					case"GastoParticular":
+						con.crearGastoRecurrente(monto,descripcion,TipoExpensa.GastoParticular,venc,duracion);
+						System.out.println("Creacion exitosa");
+						break;
+					case"FondoDeReserva":
+						con.crearGastoRecurrente(monto,descripcion,TipoExpensa.FondoDeReserva,venc,duracion);
+						System.out.println("Creacion exitosa");
+						break;
+					default:
+						System.out.println("Ingrese un comando valido");
+					}
 					break;
 				case "3":
 

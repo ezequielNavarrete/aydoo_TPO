@@ -5,7 +5,7 @@ import java.util.Date;
 public class GastoComun extends Gasto{
 
 	
-	public GastoComun(float monto, String descripcion, String tipoExpensa) {
+	public GastoComun(float monto, String descripcion, TipoExpensa tipoExpensa) {
 		super(monto, descripcion, tipoExpensa);
 	}
 	

@@ -73,13 +73,13 @@ public class Consorcio {
 		criterio.divisionDeExpensas(listadounidades, totalapagar, fondoreserva);
 	}
 	
-	public void crearGasto(float monto,String descripcion,String tipoExpensa) {
+	public void crearGasto(float monto,String descripcion,TipoExpensa tipoExpensa) {
 		GastoComun nuevoGasto=new GastoComun(monto,descripcion,tipoExpensa);
 		ArrayList<GastoComun> listado=getListadoDeGastos();
 		listado.add(nuevoGasto);
 	}
 	
-	public void crearGastoRecurrente(float monto,String descripcion,String tipoExpensa,Date vencimiento,int meses) {
+	public void crearGastoRecurrente(float monto,String descripcion,TipoExpensa tipoExpensa,Date vencimiento,int meses) {
 		GastoRecurrente nuevoGasto=new GastoRecurrente(monto,descripcion,tipoExpensa,vencimiento,meses);
 		ArrayList<GastoRecurrente> listado=getListadoGastosRecurrentes();
 		listado.add(nuevoGasto);
@@ -103,8 +103,8 @@ public class Consorcio {
 	
 	public void cargarDatosPruebaGastos() {
 		
-		GastoComun gasto1=new GastoComun(15,"desc","Ordinaria");
-		GastoComun otro=new GastoComun(26,"prueba","Extraordinaria");
+		GastoComun gasto1=new GastoComun(15,"desc",TipoExpensa.Ordinaria);
+		GastoComun otro=new GastoComun(26,"prueba",TipoExpensa.Extraordinaria);
 		ArrayList<GastoComun> averhola=new ArrayList<GastoComun>();
 		averhola.add(gasto1);
 		averhola.add(otro);
@@ -112,8 +112,8 @@ public class Consorcio {
 		
 		//GastoRecurrente(float monto, String descripcion, String tipoExpensa,Date vencimiento,int duracionEnMeses) {
 		Date fecha=new Date(123,5,15);
-		GastoRecurrente primero=new GastoRecurrente(42,"primero","GastoParticular",fecha,5);
-		GastoRecurrente segundo=new GastoRecurrente(630,"segundo","FondoDeReserva",fecha,3);
+		GastoRecurrente primero=new GastoRecurrente(42,"primero",TipoExpensa.GastoParticular,fecha,5);
+		GastoRecurrente segundo=new GastoRecurrente(630,"segundo",TipoExpensa.FondoDeReserva,fecha,3);
 		ArrayList<GastoRecurrente> listagasrec=new ArrayList<GastoRecurrente>();
 		listagasrec.add(primero);
 		listagasrec.add(segundo);

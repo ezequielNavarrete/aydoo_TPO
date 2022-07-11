@@ -10,11 +10,11 @@ public abstract class Gasto {
 	
 	protected String descripcion;
 	protected float monto;
-	protected String tipoExpensa;
+	protected TipoExpensa tipoExpensa;
 	private Date vencimiento;
 	private int duracionEnMeses;
 	
-	public Gasto(float monto,String descripcion,String tipoExpensa) {
+	public Gasto(float monto,String descripcion,TipoExpensa tipoExpensa) {
 		this.monto=monto;
 		this.descripcion=descripcion;
 		this.tipoExpensa=tipoExpensa;
@@ -39,11 +39,11 @@ public abstract class Gasto {
 		this.monto = monto;
 	}
 
-	public String getTipoExpensa() {
+	public TipoExpensa getTipoExpensa() {
 		return tipoExpensa;
 	}
 
-	public void setTipoExpensa(String tipoExpensa) {
+	public void setTipoExpensa(TipoExpensa tipoExpensa) {
 		this.tipoExpensa = tipoExpensa;
 	}
 	
