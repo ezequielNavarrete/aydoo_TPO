@@ -1,11 +1,12 @@
 package estrategiaCriterio;
+import java.util.ArrayList;
 import java.util.List;
 
-import estrategiaCriterio.EstrategiaDeCriterio;
+
 import modelado.Criterio;
 import modelado.UnidadFuncional;
 
-public class PagoCompleto implements EstrategiaDeCriterio{
+public class PagoCompleto extends Criterio{
 
 	public void divisionDeExpensas(List<UnidadFuncional> listadoUnidades, float totalAPagar, float fondosReserva) {
 		float por;

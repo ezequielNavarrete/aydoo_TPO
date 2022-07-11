@@ -1,11 +1,10 @@
 package estrategiaCriterio;
 import java.util.List;
 
-import estrategiaCriterio.EstrategiaDeCriterio;
 import modelado.Criterio;
 import modelado.UnidadFuncional;
 
-public class PagoConFondosDeReserva implements EstrategiaDeCriterio{
+public class PagoConFondosDeReserva extends Criterio{
 
 	public void divisionDeExpensas(List<UnidadFuncional> listadoUnidades, float totalAPagar, float fondosReserva) {
 		

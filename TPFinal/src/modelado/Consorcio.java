@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import estrategiaCriterio.PagoCompleto;
 import modelado.UnidadFuncional;
 import modelado.Componente;
 import modelado.Gasto;
@@ -55,24 +56,21 @@ public class Consorcio {
 		this.listadoGastosRecurrentes = listadoGastosRecurrentes;
 	}
 
-	public float conocerSaldo() {
-		return 0;
-	}
-	
-	public void cargarGastosRecurrentes() {
-		
-	}
-	
-	public void cargarGastosComunes() {
-		
+	public float conocerSaldo(Componente com1) {
+		Criterio c1=new PagoCompleto();
+		float saldo=c1.obtencionSaldo(com1);
+		return saldo;
 	}
 	
 	public void confirmarPagoExpensas() {
 		
 	}
 	
-	public float generarPagoUnidadFuncional(Criterio criterio) {
-		return  0;
+	public void LiquidarExpensas(Criterio criterio,ArrayList<UnidadFuncional> listadounidades,float fondoreserva,ArrayList<Gasto> listarecurentes,ArrayList<Gasto> listadocomunes) {
+		
+		float totalapagar=criterio.calculoDeGastos(listarecurentes)+criterio.calculoDeGastos(listadocomunes);
+		
+		criterio.divisionDeExpensas(listadounidades, totalapagar, fondoreserva);
 	}
 	
 	public String conocerAdministrador() {
@@ -85,10 +83,6 @@ public class Consorcio {
 	
 	public float conocerPagos(UnidadFuncional unidadFuncional) {
 		return 0;
-	}
-	
-	public void generarExpensas(UnidadFuncional unidadFuncional) {
-		 
 	}
 	
 	public void enviarNotificacion(Notificacion notificacion) {
