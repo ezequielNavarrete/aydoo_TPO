@@ -73,6 +73,18 @@ public class Consorcio {
 		criterio.divisionDeExpensas(listadounidades, totalapagar, fondoreserva);
 	}
 	
+	public void crearGasto(float monto,String descripcion,String tipoExpensa) {
+		GastoComun nuevoGasto=new GastoComun(monto,descripcion,tipoExpensa);
+		ArrayList<GastoComun> listado=getListadoDeGastos();
+		listado.add(nuevoGasto);
+	}
+	
+	public void crearGastoRecurrente(float monto,String descripcion,String tipoExpensa,Date vencimiento,int meses) {
+		GastoRecurrente nuevoGasto=new GastoRecurrente(monto,descripcion,tipoExpensa,vencimiento,meses);
+		ArrayList<GastoRecurrente> listado=getListadoGastosRecurrentes();
+		listado.add(nuevoGasto);
+	}
+	
 	public String conocerAdministrador() {
 		return null;
 	}

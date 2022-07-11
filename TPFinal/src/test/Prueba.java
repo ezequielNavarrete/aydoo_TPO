@@ -73,8 +73,9 @@ public class Prueba {
 					monto=Float.parseFloat(sc.nextLine());
 					System.out.println("Seleccione el tipo de expensa del gasto: ");
 					tipoExpensa=sc.nextLine();
-					GastoComun gasto=new GastoComun(monto,descripcion,tipoExpensa);
-					aver.add(gasto);
+
+					con.crearGasto(monto,descripcion,tipoExpensa);
+
 					System.out.println("Creacion exitosa");
 					break;
 				case "2":
@@ -90,8 +91,9 @@ public class Prueba {
 					System.out.println("Seleccione la duracion en meses del gasto: ");
 					int duracion=Integer.parseInt(sc.nextLine());
 					Date venc=new SimpleDateFormat("dd/MM/yyyy").parse(vencimiento);
-					GastoRecurrente gastorec=new GastoRecurrente(monto,descripcion,tipoExpensa,venc,duracion);
-					recu.add(gastorec);
+					
+					con.crearGastoRecurrente(monto, descripcion, tipoExpensa, venc, duracion);
+
 					System.out.println("Creacion exitosa");
 					break;
 				case "3":
