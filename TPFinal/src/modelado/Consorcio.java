@@ -1,6 +1,8 @@
 package modelado;
 import java.text.SimpleDateFormat;
+
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -16,7 +18,7 @@ public class Consorcio {
 	
 	private List<UnidadFuncional> listadoUnidades;
 	private Componente cuentaBancaria;
-	private Criterio criterio;
+	private Administrador administrador;
 	private Notificacion notificacion;
 
 	private ArrayList<GastoComun> listadoDeGastos;
@@ -27,12 +29,11 @@ public class Consorcio {
 	}
 	
 	public Consorcio(List<UnidadFuncional> listadoUnidades, Componente cuentaBancaria, ArrayList<GastoComun> listadoDeGastos,
-			ArrayList<GastoRecurrente> listadoGastosRecurrentes,Criterio criterio, Notificacion notificacion) {
+			ArrayList<GastoRecurrente> listadoGastosRecurrentes, Notificacion notificacion) {
 		this.listadoGastosRecurrentes=listadoGastosRecurrentes;
 		this.listadoUnidades = listadoUnidades;
 		this.cuentaBancaria = cuentaBancaria;
 		this.listadoDeGastos = listadoDeGastos;
-		this.criterio = criterio;
 		this.notificacion = notificacion;
 	}
 	
@@ -62,15 +63,14 @@ public class Consorcio {
 		return saldo;
 	}
 	
-	public void confirmarPagoExpensas() {
-		
-	}
+	
 	
 	public void LiquidarExpensas(Criterio criterio,ArrayList<UnidadFuncional> listadounidades,float fondoreserva,ArrayList<Gasto> listarecurentes,ArrayList<Gasto> listadocomunes) {
 		
-		float totalapagar=criterio.calculoDeGastos(listarecurentes)+criterio.calculoDeGastos(listadocomunes);
+		float totalgastos=criterio.calculoDeGastos(listarecurentes)+criterio.calculoDeGastos(listadocomunes);
 		
-		criterio.divisionDeExpensas(listadounidades, totalapagar, fondoreserva);
+		criterio.divisionDeExpensas(listadounidades, totalgastos, fondoreserva);
+		
 	}
 	
 	public void crearGasto(float monto,String descripcion,TipoExpensa tipoExpensa) {
@@ -86,15 +86,11 @@ public class Consorcio {
 	}
 	
 	public String conocerAdministrador() {
-		return null;
+		return administrador.getNombre();
 	}
 	
 	public float conocerDeuda(UnidadFuncional unidadFuncional) {
-		return 0;
-	}
-	
-	public float conocerPagos(UnidadFuncional unidadFuncional) {
-		return 0;
+		return unidadFuncional.getDeuda();
 	}
 	
 	public void enviarNotificacion(Notificacion notificacion) {
@@ -208,6 +204,8 @@ public void cargarDatosPruebaUnidadFuncional() {
 		
 		UnidadFuncional uni1=new UnidadFuncional();
 		UnidadFuncional uni2=new UnidadFuncional();
+		UnidadFuncional uni3=new UnidadFuncional();
+		UnidadFuncional uni4=new UnidadFuncional();
 		uni1.setId(5);
 		uni2.setId(3);
 		uni1.setMetrosCuadrados(50);
@@ -216,11 +214,25 @@ public void cargarDatosPruebaUnidadFuncional() {
 		uni2.setPorcentaje((float) 0.07);
 		uni1.setExpensa(153);
 		uni2.setExpensa(635);
+		uni3.setId(12);
+		uni4.setId(8);
+		uni3.setMetrosCuadrados(66);
+		uni3.setPorcentaje((float) 0.06);
+		uni4.setMetrosCuadrados(120);
+		uni4.setPorcentaje((float) 0.09);
+		uni3.setExpensa(790);
+		uni4.setExpensa(1035);
 		ArrayList<UnidadFuncional> lisuni=new ArrayList<UnidadFuncional>();
 		lisuni.add(uni1);
 		lisuni.add(uni2);
+		lisuni.add(uni3);
+		lisuni.add(uni4);
 		this.listadoUnidades=lisuni;
 		
+}
+
+public void confirmarPagoExpensas() {
+	
 }
 	
 

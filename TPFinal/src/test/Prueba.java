@@ -60,7 +60,7 @@ public class Prueba {
 		Criterio c2=new PagoConFondosDeReserva();
 		Criterio c3=new PagoYGenerarFuturos();
 		Componente com1=new Componente();
-		com1.setSaldo(100000);
+		com1.setSaldo(100000); //De ejemplo para hacer las pruebas
 		String descripcion= new String();
 		float monto= Float.parseFloat("0.0");
 		String tipoExpensa=new String();
@@ -134,7 +134,6 @@ public class Prueba {
 					ArrayList<Gasto> copiaLista = new ArrayList<Gasto>(aver);
 					ArrayList<Gasto> copiaListarec = new ArrayList<Gasto>(recu);
 					ArrayList<UnidadFuncional> copiaListauni = new ArrayList<UnidadFuncional>(unif);
-					float totalapagar;
 					float fondoreserva=0;
 
 					System.out.println("Que criterio desea utilizar? (Ingrese 0 para salir)");
@@ -149,6 +148,7 @@ public class Prueba {
 							case "1":
 							    con.LiquidarExpensas(c1, copiaListauni, fondoreserva, copiaListarec, copiaLista);
 								System.out.println("Expensas por unidad funcional generadas correctamente");
+								
 								break;
 							case "2":
 								System.out.println("Cuanto fondos de reserva desea utilizar?");
@@ -156,6 +156,7 @@ public class Prueba {
 								con.LiquidarExpensas(c2, copiaListauni, fondoreserva, copiaListarec, copiaLista);
 								com1.setSaldo(com1.devolverSaldo()-fondoreserva);
 								System.out.println("Expensas por unidad funcional generadas correctamente");
+								
 								break;
 							case "3":
 								System.out.println("Cuanto fondos de reserva desea generar?");
@@ -163,6 +164,7 @@ public class Prueba {
 								con.LiquidarExpensas(c3, copiaListauni, fondoreserva, copiaListarec, copiaLista);
 								com1.setSaldo(com1.devolverSaldo()+fondoreserva);
 								System.out.println("Expensas por unidad funcional generadas correctamente");
+								
 								break;
 							case "4":
 								float saldo=con.conocerSaldo(com1);

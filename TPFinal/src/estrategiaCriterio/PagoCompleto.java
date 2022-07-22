@@ -16,6 +16,7 @@ public class PagoCompleto extends Criterio{
 			  deu=listadoUnidades.get(i).getDeuda();
 		      listadoUnidades.get(i).setExpensa(por*totalAPagar+deu);
 		    }
+		
 	}
 
 }

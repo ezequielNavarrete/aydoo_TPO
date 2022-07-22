@@ -95,6 +95,6 @@ public class UnidadFuncional {
 	
 	public String aStringUnidades() {
 		
-		return ("Id : " + this.id + " Metros: " + this.metrosCuadrados + ",Expensas: " + this.expensa );
+		return ("Id_unidadFuncinal: " + this.id + " Metros: " + this.metrosCuadrados + " Expensas: " + this.expensa );
 	}
 }

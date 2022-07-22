@@ -6,8 +6,9 @@ import adapters.IAdapterComponente;
 
 public class AdapterComponente implements IAdapterComponente {
 
+	private float saldo;
 	public float devolverSaldo(Date fecha, int tokenSeguridad) {
-		return 0;
+		return this.saldo;
 	}
 
 }

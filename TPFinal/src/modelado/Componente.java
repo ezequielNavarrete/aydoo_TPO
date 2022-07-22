@@ -1,6 +1,7 @@
 package modelado;
 
 import java.util.Date;
+import adapters.AdapterComponente;
 
 public class Componente {
 	
@@ -10,13 +11,16 @@ public class Componente {
 	private int tokenSeguridad;
 	protected float saldo;
 	
+	private AdapterComponente adapter;
 	
+	
+	//Para hacer las pruebas
 	public void setSaldo(float saldo) {
 		this.saldo = saldo;
 	}
 	
 	public float devolverSaldo() {
-		return saldo;
+		return this.saldo;
 	}
 	
 	

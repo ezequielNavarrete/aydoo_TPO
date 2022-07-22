@@ -16,6 +16,7 @@ public class PagoYGenerarFuturos extends Criterio {
 			  deu=listadoUnidades.get(i).getDeuda();
 		      listadoUnidades.get(i).setExpensa(por*totalAPagar+deu);
 		    }
+		
 	}
 
 }
